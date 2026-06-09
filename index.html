@@ -87,6 +87,7 @@
     line-height: 1.7;
     overflow-x: hidden;
   }
+  img { max-width: 100%; height: auto; }
 
   /* ─── SCROLLBAR ─── */
   * {
@@ -167,6 +168,39 @@
   }
   .nav-cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
 
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 44px; height: 44px;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid rgba(201,164,101,0.25);
+    cursor: pointer;
+    z-index: 1002;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 100%; height: 1.5px;
+    background: var(--gold);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  body.nav-open .nav-toggle span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+  .nav-backdrop {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(7, 21, 37, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
   /* ─── PAGES ─── */
   .page { display: none; content-visibility: hidden; contain-intrinsic-size: 0 800px; }
   .page.active { display: block; content-visibility: visible; }
@@ -184,9 +218,16 @@
   .hero {
     min-height: 100vh;
     position: relative;
-    display: flex; align-items: center;
+    display: flex;
+    align-items: center;
     padding: 140px 5% 80px;
     overflow: hidden;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 700px;
   }
   .hero-bg {
     position: absolute; inset: 0; z-index: 0;
@@ -201,7 +242,7 @@
                       linear-gradient(90deg, rgba(201,164,101,1) 1px, transparent 1px);
     background-size: 60px 60px;
   }
-  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+  .hero-content { width: 100%; }
   .hero-tag {
     display: inline-flex; align-items: center; gap: 10px;
     font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
@@ -256,10 +297,14 @@
   .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
   .hero-stats {
-    position: absolute; right: 5%; bottom: 80px; z-index: 1;
-    display: flex; gap: 60px;
+    position: absolute;
+    right: 5%;
+    bottom: 80px;
+    z-index: 1;
+    display: flex;
+    gap: 60px;
   }
-  .hero-stat { text-align: right; }
+  .hero-stat { text-align: right; flex: 0 0 auto; }
   .hero-stat-num {
     display: block;
     font-family: var(--serif); font-size: 42px; font-weight: 300;
@@ -942,7 +987,7 @@
 
   /* ─── LOGO IMAGE ─── */
   .nav-logo-img {
-    height: 87px; width: auto; display: block;
+    height: 87px; width: auto; max-width: none; display: block;
   }
   .footer-logo-img {
     height: 96px; width: auto; display: block; margin-bottom: 16px;
@@ -1034,6 +1079,214 @@
     border-color: var(--gold);
   }
   .form-modal-btn { margin-top: 0; }
+
+  .booking-form-panel {
+    padding: 48px;
+    border: 1px solid rgba(201,164,101,0.2);
+    background: rgba(201,164,101,0.02);
+  }
+  .booking-form-title {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .booking-form-title em { color: var(--gold); font-style: italic; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    section { padding: 80px 5%; }
+    .about-grid,
+    .why-us-inner,
+    .contact-inner,
+    .booking-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .process-step:nth-child(2)::after { display: none; }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .services-page-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .why-aside { position: static; }
+    .hero-stats {
+      position: static;
+      width: 100%;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(201,164,101,0.15);
+      gap: 0;
+      justify-content: space-between;
+    }
+    .hero-stat {
+      text-align: center;
+      flex: 1;
+      padding: 0 12px;
+    }
+    .hero-stat + .hero-stat {
+      border-left: 1px solid rgba(201,164,101,0.12);
+    }
+    .hero {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding-bottom: 60px;
+      min-height: auto;
+    }
+    .hero-scroll { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    nav, nav.scrolled { height: 72px; padding: 0 20px; }
+    .nav-logo-img { height: 52px; width: auto; }
+    .nav-toggle { display: flex; }
+    .nav-backdrop { display: block; }
+    body.nav-open .nav-backdrop { opacity: 1; visibility: visible; }
+    body.nav-open { overflow: hidden; }
+
+    .nav-links {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(300px, 88vw);
+      height: 100vh;
+      height: 100dvh;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 88px 28px 32px;
+      background: var(--navy-mid);
+      border-left: 1px solid rgba(201,164,101,0.15);
+      transform: translateX(100%);
+      transition: transform var(--transition);
+      z-index: 1001;
+      overflow-y: auto;
+    }
+    body.nav-open .nav-links { transform: translateX(0); }
+    .nav-links li { border-bottom: 1px solid rgba(201,164,101,0.08); }
+    .nav-links a {
+      display: block;
+      padding: 16px 0;
+      font-size: 12px;
+    }
+    .nav-links .nav-cta {
+      margin-top: 16px;
+      text-align: center;
+      padding: 14px 20px !important;
+    }
+
+    .hero {
+      min-height: auto;
+      padding: 100px 24px 40px;
+    }
+    .hero-inner { max-width: 100%; }
+    .hero-tag { margin-bottom: 20px; font-size: 10px; }
+    .hero-tag::before { width: 28px; }
+    .hero-br { display: none; }
+    .hero-h1 {
+      font-size: clamp(34px, 9.5vw, 48px);
+      line-height: 1.12;
+      margin-bottom: 20px;
+    }
+    .hero-p {
+      font-size: 15px;
+      max-width: 100%;
+      margin-bottom: 28px;
+      line-height: 1.75;
+    }
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: 12px;
+    }
+    .btn-primary, .btn-outline, .btn-dark {
+      text-align: center;
+      width: 100%;
+      padding: 16px 24px;
+    }
+    .hero-stats {
+      margin-top: 36px;
+      padding-top: 28px;
+    }
+    .hero-stat { padding: 0 8px; }
+    .hero-stat-num { font-size: clamp(26px, 7vw, 32px); }
+    .hero-stat-label { font-size: 9px; letter-spacing: 0.08em; }
+
+    section { padding: 64px 20px; }
+    .about-hero { padding: 110px 20px 56px; min-height: auto; }
+    .page-hero-h1 { font-size: clamp(32px, 9vw, 48px); }
+    .page-hero-p { font-size: 15px; }
+    .section-h2 { font-size: clamp(28px, 8vw, 40px); }
+    .section-intro { font-size: 15px; }
+
+    .about-grid { margin-top: 48px; gap: 40px; }
+    .about-img-frame { height: auto; min-height: 280px; }
+    .about-badge {
+      width: 88px; height: 88px;
+      bottom: 12px; right: 12px;
+    }
+    .about-badge-num { font-size: 28px; }
+    .about-text .values { grid-template-columns: 1fr; }
+
+    .services-header { margin-bottom: 40px; }
+    .services-grid,
+    .process-steps,
+    .testimonials-grid,
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+    .process-step::after { display: none; }
+    .service-card { padding: 36px 28px; }
+    .service-full-card { padding: 36px 28px; }
+
+    .why-us-inner { margin-top: 48px; gap: 40px; }
+    .why-feature { gap: 16px; padding: 24px 0; }
+    .why-quote { padding: 32px 24px; }
+    .why-quote-text { font-size: 18px; }
+
+    .trust-strip { padding: 24px 20px; gap: 20px 32px; }
+    .trust-item { font-size: 12px; }
+
+    .contact-inner { margin-top: 40px; gap: 40px; }
+    .contact-info { gap: 32px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: 1; }
+
+    .booking-inner { margin-top: 40px; gap: 40px; }
+    .booking-form-panel { padding: 28px 20px; }
+    .booking-form-title { font-size: 22px; }
+
+    .cta-banner {
+      padding: 56px 20px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .cta-banner h2 { font-size: clamp(28px, 8vw, 36px); }
+
+    footer { padding: 56px 20px 32px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .footer-logo-img { height: 72px; }
+
+    .faq-question { padding: 20px 0; }
+    .faq-q-text { font-size: 17px; }
+    .form-modal-panel { padding: 32px 24px 28px; }
+    .form-modal-title { font-size: 24px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 96px 20px 36px; }
+    .hero-stat-label {
+      font-size: 8px;
+      line-height: 1.35;
+    }
+    .testimonial-card { padding: 28px 24px; }
+    .about-corner { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -1050,11 +1303,15 @@
 </noscript>
 
 <header>
+<div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
 <nav id="main-nav" aria-label="Main navigation">
   <a class="nav-logo" href="#home" data-page="home" aria-label="Quantum Wills home">
     <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills &amp; Estate Planning — UK will writing and estate planning" class="nav-logo-img" width="200" height="87" fetchpriority="high" decoding="async">
   </a>
-  <ul class="nav-links">
+  <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-menu">
     <li><a href="#home" data-page="home">Home</a></li>
     <li><a href="#about" data-page="about">About Us</a></li>
     <li><a href="#services" data-page="services">Services</a></li>
@@ -1074,17 +1331,19 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
-    <div class="hero-content fade-in">
-      <div class="hero-tag">Trusted UK Estate Planners</div>
-      <h1 class="hero-h1">
-        Securing your<br>legacy with <em>precision</em><br>and purpose.
-      </h1>
-      <p class="hero-p">
-        Expert will writing and estate planning services across the United Kingdom. We ensure your wishes are protected, your loved ones are cared for, and your legacy endures.
-      </p>
-      <div class="hero-actions">
-        <a href="#book" class="btn-primary">Book a Free Consultation</a>
-        <a href="#services" class="btn-outline">Our Services</a>
+    <div class="hero-inner fade-in">
+      <div class="hero-content">
+        <div class="hero-tag">Trusted UK Estate Planners</div>
+        <h1 class="hero-h1">
+          Securing your<br class="hero-br">legacy with <em>precision</em><br class="hero-br">and purpose.
+        </h1>
+        <p class="hero-p">
+          Expert will writing and estate planning services across the United Kingdom. We ensure your wishes are protected, your loved ones are cared for, and your legacy endures.
+        </p>
+        <div class="hero-actions">
+          <a href="#book" class="btn-primary">Book a Free Consultation</a>
+          <a href="#services" class="btn-outline">Our Services</a>
+        </div>
       </div>
     </div>
     <div class="hero-stats fade-in">
@@ -1974,8 +2233,8 @@
         </div>
       </div>
       <div>
-        <div style="padding:48px; border:1px solid rgba(201,164,101,0.2); background:rgba(201,164,101,0.02);">
-          <div style="font-family:var(--serif); font-size:26px; font-weight:300; color:var(--white); margin-bottom:16px; line-height:1.2;">Book your <em style="color:var(--gold); font-style:italic;">free</em> consultation</div>
+        <div class="booking-form-panel">
+          <div class="booking-form-title">Book your <em>free</em> consultation</div>
           <div class="form-grid" id="book-form">
             <div class="form-group">
               <label class="form-label" for="bk-fname">First Name <span class="form-required" aria-hidden="true">*</span></label>
@@ -2215,6 +2474,7 @@ function isEmailJsConfigured() {
 }
 
 function showFormErrorModal() {
+  setNavOpen(false);
   const modal = document.getElementById('form-error-modal');
   modal.classList.add('visible');
   modal.setAttribute('aria-hidden', 'false');
@@ -2225,7 +2485,9 @@ function closeFormErrorModal() {
   const modal = document.getElementById('form-error-modal');
   modal.classList.remove('visible');
   modal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
+  if (!document.body.classList.contains('nav-open')) {
+    document.body.style.overflow = '';
+  }
 }
 
 document.addEventListener('keydown', e => {
@@ -2279,9 +2541,25 @@ async function sendViaEmailJs(templateKey, params, { btn, note, successId, btnTe
 // ── PAGE ROUTING ──
 const VALID_PAGES = ['home', 'about', 'services', 'faq', 'contact', 'book'];
 
+function setNavOpen(open) {
+  document.body.classList.toggle('nav-open', open);
+  const toggle = document.getElementById('nav-toggle');
+  const backdrop = document.getElementById('nav-backdrop');
+  if (toggle) {
+    toggle.setAttribute('aria-expanded', open);
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  if (backdrop) backdrop.setAttribute('aria-hidden', !open);
+  if (!document.getElementById('form-error-modal')?.classList.contains('visible')) {
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+}
+
 function showPage(name, updateHash) {
   if (updateHash === undefined) updateHash = true;
   if (!VALID_PAGES.includes(name)) name = 'home';
+
+  setNavOpen(false);
 
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
@@ -2305,11 +2583,20 @@ function handleRoute() {
   showPage(VALID_PAGES.includes(name) ? name : 'home', false);
 }
 
+document.getElementById('nav-toggle')?.addEventListener('click', () => {
+  setNavOpen(!document.body.classList.contains('nav-open'));
+});
+document.getElementById('nav-backdrop')?.addEventListener('click', () => setNavOpen(false));
+
 document.querySelectorAll('.nav-links a, .nav-logo').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     showPage(link.dataset.page || 'home');
   });
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.body.classList.contains('nav-open')) setNavOpen(false);
 });
 
 window.addEventListener('hashchange', handleRoute);
