@@ -1,11 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quantum Wills & Estate Planning | Professional Will Writing UK</title>
+<title>Quantum Wills &amp; Estate Planning | Professional Will Writing UK</title>
+<meta name="description" content="Expert will writing and estate planning across the UK. Free consultation, fixed fees, and secure will storage. Serving families nationwide from Hemel Hempstead.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Quantum Wills &amp; Estate Planning Ltd">
+<meta name="theme-color" content="#071525">
+<link rel="canonical" href="https://quantum-wills.co.uk/" id="canonical-link">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Quantum Wills &amp; Estate Planning">
+<meta property="og:title" content="Quantum Wills &amp; Estate Planning | Professional Will Writing UK">
+<meta property="og:description" content="Expert will writing and estate planning across the UK. Free consultation, fixed fees, and secure will storage.">
+<meta property="og:image" content="https://quantum-wills.co.uk/assets/Quantum%20Wills%20Logo.png">
+<meta property="og:url" content="https://quantum-wills.co.uk/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Quantum Wills &amp; Estate Planning">
+<meta name="twitter:description" content="Expert will writing and estate planning across the UK. Book a free consultation today.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"></noscript>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Quantum Wills & Estate Planning",
+  "description": "Professional will writing and estate planning services throughout the United Kingdom.",
+  "url": "https://quantum-wills.co.uk",
+  "telephone": "+44-1442-816-817",
+  "email": "quantum-wills@gmail.com",
+  "areaServed": { "@type": "Country", "name": "United Kingdom" },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "The Imex Building, 575-599 Maxted Road",
+    "addressLocality": "Hemel Hempstead",
+    "addressRegion": "Hertfordshire",
+    "postalCode": "HP2 7DX",
+    "addressCountry": "GB"
+  },
+  "priceRange": "££",
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  }]
+}
+</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -120,8 +164,17 @@
   .nav-cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
 
   /* ─── PAGES ─── */
-  .page { display: none; }
-  .page.active { display: block; }
+  .page { display: none; content-visibility: hidden; contain-intrinsic-size: 0 800px; }
+  .page.active { display: block; content-visibility: visible; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 
   /* ─── HERO ─── */
   .hero {
@@ -879,6 +932,7 @@
     letter-spacing: 0.1em; text-transform: uppercase;
     cursor: pointer; transition: all var(--transition);
     white-space: nowrap;
+    text-decoration: none; display: inline-block;
   }
   .btn-dark:hover { background: var(--navy-mid); }
 
@@ -980,20 +1034,34 @@
 </head>
 <body>
 
-<!-- ─── NAVIGATION ─── -->
-<nav id="main-nav">
-  <a class="nav-logo" onclick="showPage('home')">
-    <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="nav-logo-img">
+<noscript>
+  <p style="padding:16px;background:#0d1f35;color:#fff;text-align:center;">
+    This site works best with JavaScript enabled.
+    <a href="#home" style="color:#c9a465">Home</a> ·
+    <a href="#about" style="color:#c9a465">About</a> ·
+    <a href="#services" style="color:#c9a465">Services</a> ·
+    <a href="#contact" style="color:#c9a465">Contact</a> ·
+    <a href="#book" style="color:#c9a465">Book a Meeting</a>
+  </p>
+</noscript>
+
+<header>
+<nav id="main-nav" aria-label="Main navigation">
+  <a class="nav-logo" href="#home" data-page="home" aria-label="Quantum Wills home">
+    <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills &amp; Estate Planning — UK will writing and estate planning" class="nav-logo-img" width="200" height="87" fetchpriority="high" decoding="async">
   </a>
   <ul class="nav-links">
-    <li><a onclick="showPage('home')" data-page="home">Home</a></li>
-    <li><a onclick="showPage('about')" data-page="about">About Us</a></li>
-    <li><a onclick="showPage('services')" data-page="services">Services</a></li>
-    <li><a onclick="showPage('faq')" data-page="faq">FAQs</a></li>
-    <li><a onclick="showPage('contact')" data-page="contact">Contact</a></li>
-    <li><a onclick="showPage('book')" class="nav-cta" data-page="book">Book a Meeting</a></li>
+    <li><a href="#home" data-page="home">Home</a></li>
+    <li><a href="#about" data-page="about">About Us</a></li>
+    <li><a href="#services" data-page="services">Services</a></li>
+    <li><a href="#faq" data-page="faq">FAQs</a></li>
+    <li><a href="#contact" data-page="contact">Contact</a></li>
+    <li><a href="#book" class="nav-cta" data-page="book">Book a Meeting</a></li>
   </ul>
 </nav>
+</header>
+
+<main id="main-content">
 
 <!-- ═══════════════════════════════════════ HOME PAGE ═══════════════════ -->
 <div class="page active" id="page-home">
@@ -1011,8 +1079,8 @@
         Expert will writing and estate planning services across the United Kingdom. We ensure your wishes are protected, your loved ones are cared for, and your legacy endures.
       </p>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="showPage('book')">Book a Free Consultation</button>
-        <button class="btn-outline" onclick="showPage('services')">Our Services</button>
+        <a href="#book" class="btn-primary">Book a Free Consultation</a>
+        <a href="#services" class="btn-outline">Our Services</a>
       </div>
     </div>
     <div class="hero-stats fade-in">
@@ -1049,7 +1117,7 @@
         <div class="section-label">What We Offer</div>
         <h2 class="section-h2">Comprehensive estate<br>planning <em>services</em></h2>
       </div>
-      <button class="btn-outline" onclick="showPage('services')">View All Services</button>
+      <a href="#services" class="btn-outline">View All Services</a>
     </div>
     <div class="services-grid fade-in">
       <div class="service-card">
@@ -1059,7 +1127,7 @@
         </div>
         <h3 class="service-title">Will Writing</h3>
         <p class="service-desc">Professionally drafted, legally binding wills that clearly express your wishes and protect your assets for future generations.</p>
-        <span class="service-link" onclick="showPage('services')">Learn more</span>
+        <a href="#services" class="service-link">Learn more</a>
       </div>
       <div class="service-card">
         <div class="service-num">02</div>
@@ -1068,7 +1136,7 @@
         </div>
         <h3 class="service-title">Estate Planning</h3>
         <p class="service-desc">Holistic strategies to preserve your wealth, minimise inheritance tax, and ensure seamless transfer of assets to your beneficiaries.</p>
-        <span class="service-link" onclick="showPage('services')">Learn more</span>
+        <a href="#services" class="service-link">Learn more</a>
       </div>
       <div class="service-card">
         <div class="service-num">03</div>
@@ -1077,7 +1145,7 @@
         </div>
         <h3 class="service-title">Lasting Power of Attorney</h3>
         <p class="service-desc">Appoint trusted individuals to make decisions on your behalf should you become unable to do so yourself — for property, finances, and health.</p>
-        <span class="service-link" onclick="showPage('services')">Learn more</span>
+        <a href="#services" class="service-link">Learn more</a>
       </div>
       <div class="service-card">
         <div class="service-num">04</div>
@@ -1086,7 +1154,7 @@
         </div>
         <h3 class="service-title">Trust Formation</h3>
         <p class="service-desc">Establish protective trusts to safeguard assets for vulnerable beneficiaries, minor children, or those with complex financial situations.</p>
-        <span class="service-link" onclick="showPage('services')">Learn more</span>
+        <a href="#services" class="service-link">Learn more</a>
       </div>
       <div class="service-card">
         <div class="service-num">05</div>
@@ -1095,7 +1163,7 @@
         </div>
         <h3 class="service-title">Probate Services</h3>
         <p class="service-desc">Expert guidance through the probate process, handling administration of estates with care and efficiency during a difficult time.</p>
-        <span class="service-link" onclick="showPage('services')">Learn more</span>
+        <a href="#services" class="service-link">Learn more</a>
       </div>
       <div class="service-card">
         <div class="service-num">06</div>
@@ -1104,7 +1172,7 @@
         </div>
         <h3 class="service-title">Property Protection</h3>
         <p class="service-desc">Protect your property from potential future care costs, divorce proceedings, and ensure it passes to who you intend.</p>
-        <span class="service-link" onclick="showPage('services')">Learn more</span>
+        <a href="#services" class="service-link">Learn more</a>
       </div>
     </div>
   </section>
@@ -1252,44 +1320,44 @@
   <!-- CTA BANNER -->
   <div class="cta-banner fade-in">
     <h2>Ready to protect what <em>matters most</em>?</h2>
-    <button class="btn-dark" onclick="showPage('book')">Book Your Free Consultation</button>
+    <a href="#book" class="btn-dark">Book Your Free Consultation</a>
   </div>
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
-          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
-        </div>
+        <a class="nav-logo" href="#home" aria-label="Quantum Wills home">
+          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills &amp; Estate Planning" class="footer-logo-img" width="220" height="96" loading="lazy" decoding="async">
+        </a>
         <p>Professional will writing and estate planning services throughout the United Kingdom. Protecting your legacy, securing your family's future.</p>
       </div>
       <div>
         <div class="footer-col-title">Services</div>
         <ul class="footer-links">
-          <li><a onclick="showPage('services')">Will Writing</a></li>
-          <li><a onclick="showPage('services')">Estate Planning</a></li>
-          <li><a onclick="showPage('services')">Lasting Power of Attorney</a></li>
-          <li><a onclick="showPage('services')">Trust Formation</a></li>
-          <li><a onclick="showPage('services')">Probate Services</a></li>
-          <li><a onclick="showPage('services')">Property Protection</a></li>
+          <li><a href="#services">Will Writing</a></li>
+          <li><a href="#services">Estate Planning</a></li>
+          <li><a href="#services">Lasting Power of Attorney</a></li>
+          <li><a href="#services">Trust Formation</a></li>
+          <li><a href="#services">Probate Services</a></li>
+          <li><a href="#services">Property Protection</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
-          <li><a onclick="showPage('about')">About Us</a></li>
-          <li><a onclick="showPage('about')">Our Team</a></li>
-          <li><a onclick="showPage('faq')">FAQs</a></li>
-          <li><a onclick="showPage('contact')">Contact</a></li>
-          <li><a onclick="showPage('book')">Book a Meeting</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#about">Our Team</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#book">Book a Meeting</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Contact</div>
         <ul class="footer-links">
-          <li><a>01442 816 817</a></li>
-          <li><a>quantum-wills@gmail.com</a></li>
+          <li><a href="tel:+441442816817">01442 816 817</a></li>
+          <li><a href="mailto:quantum-wills@gmail.com">quantum-wills@gmail.com</a></li>
           <li><a>Mon–Fri: 9am–6pm</a></li>
         </ul>
       </div>
@@ -1316,7 +1384,7 @@
     <div class="about-grid fade-in">
       <div class="about-img-wrap">
         <div class="about-img-frame" style="overflow:hidden; display:block; padding:0; border-radius:0;">
-          <img src="assets/Vipul.png" alt="Vipul — Director and CEO" class="about-img-photo">
+          <img src="assets/Vipul.png" alt="Vipul, Director and CEO of Quantum Wills &amp; Estate Planning" class="about-img-photo" width="480" height="600" loading="lazy" decoding="async">
           <div class="about-img-caption">Director &amp; CEO</div>
           <div class="about-badge">
             <div class="about-badge-num">7+</div>
@@ -1392,40 +1460,40 @@
 
   <div class="cta-banner fade-in">
     <h2>Get to know us <em>in person</em></h2>
-    <button class="btn-dark" onclick="showPage('book')">Book a Free Consultation</button>
+    <a href="#book" class="btn-dark">Book a Free Consultation</a>
   </div>
 
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
-          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
-        </div>
+        <a class="nav-logo" href="#home" aria-label="Quantum Wills home">
+          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills &amp; Estate Planning" class="footer-logo-img" width="220" height="96" loading="lazy" decoding="async">
+        </a>
         <p>Professional will writing and estate planning services throughout the United Kingdom.</p>
       </div>
       <div>
         <div class="footer-col-title">Services</div>
         <ul class="footer-links">
-          <li><a onclick="showPage('services')">Will Writing</a></li>
-          <li><a onclick="showPage('services')">Estate Planning</a></li>
-          <li><a onclick="showPage('services')">Lasting Power of Attorney</a></li>
-          <li><a onclick="showPage('services')">Probate Services</a></li>
+          <li><a href="#services">Will Writing</a></li>
+          <li><a href="#services">Estate Planning</a></li>
+          <li><a href="#services">Lasting Power of Attorney</a></li>
+          <li><a href="#services">Probate Services</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
-          <li><a onclick="showPage('about')">About Us</a></li>
-          <li><a onclick="showPage('faq')">FAQs</a></li>
-          <li><a onclick="showPage('contact')">Contact</a></li>
-          <li><a onclick="showPage('book')">Book a Meeting</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#book">Book a Meeting</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Contact</div>
         <ul class="footer-links">
-          <li><a>01442 816 817</a></li>
-          <li><a>quantum-wills@gmail.com</a></li>
+          <li><a href="tel:+441442816817">01442 816 817</a></li>
+          <li><a href="mailto:quantum-wills@gmail.com">quantum-wills@gmail.com</a></li>
           <li><a>Mon–Fri: 9am–6pm</a></li>
         </ul>
       </div>
@@ -1556,40 +1624,40 @@
 
   <div class="cta-banner fade-in">
     <h2>Not sure what you <em>need</em>?</h2>
-    <button class="btn-dark" onclick="showPage('book')">Book a Free Consultation</button>
+    <a href="#book" class="btn-dark">Book a Free Consultation</a>
   </div>
 
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
-          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
-        </div>
+        <a class="nav-logo" href="#home" aria-label="Quantum Wills home">
+          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills &amp; Estate Planning" class="footer-logo-img" width="220" height="96" loading="lazy" decoding="async">
+        </a>
         <p>Professional will writing and estate planning services throughout the United Kingdom.</p>
       </div>
       <div>
         <div class="footer-col-title">Services</div>
         <ul class="footer-links">
-          <li><a onclick="showPage('services')">Will Writing</a></li>
-          <li><a onclick="showPage('services')">Estate Planning</a></li>
-          <li><a onclick="showPage('services')">Lasting Power of Attorney</a></li>
-          <li><a onclick="showPage('services')">Probate Services</a></li>
+          <li><a href="#services">Will Writing</a></li>
+          <li><a href="#services">Estate Planning</a></li>
+          <li><a href="#services">Lasting Power of Attorney</a></li>
+          <li><a href="#services">Probate Services</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
-          <li><a onclick="showPage('about')">About Us</a></li>
-          <li><a onclick="showPage('faq')">FAQs</a></li>
-          <li><a onclick="showPage('contact')">Contact</a></li>
-          <li><a onclick="showPage('book')">Book a Meeting</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#book">Book a Meeting</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Contact</div>
         <ul class="footer-links">
-          <li><a>01442 816 817</a></li>
-          <li><a>quantum-wills@gmail.com</a></li>
+          <li><a href="tel:+441442816817">01442 816 817</a></li>
+          <li><a href="mailto:quantum-wills@gmail.com">quantum-wills@gmail.com</a></li>
           <li><a>Mon–Fri: 9am–6pm</a></li>
         </ul>
       </div>
@@ -1665,40 +1733,40 @@
 
   <div class="cta-banner fade-in">
     <h2>Still have <em>questions</em>?</h2>
-    <button class="btn-dark" onclick="showPage('contact')">Get in Touch</button>
+    <a href="#contact" class="btn-dark">Get in Touch</a>
   </div>
 
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
-          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
-        </div>
+        <a class="nav-logo" href="#home" aria-label="Quantum Wills home">
+          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills &amp; Estate Planning" class="footer-logo-img" width="220" height="96" loading="lazy" decoding="async">
+        </a>
         <p>Professional will writing and estate planning services throughout the United Kingdom.</p>
       </div>
       <div>
         <div class="footer-col-title">Services</div>
         <ul class="footer-links">
-          <li><a onclick="showPage('services')">Will Writing</a></li>
-          <li><a onclick="showPage('services')">Estate Planning</a></li>
-          <li><a onclick="showPage('services')">LPA</a></li>
-          <li><a onclick="showPage('services')">Probate</a></li>
+          <li><a href="#services">Will Writing</a></li>
+          <li><a href="#services">Estate Planning</a></li>
+          <li><a href="#services">LPA</a></li>
+          <li><a href="#services">Probate</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
-          <li><a onclick="showPage('about')">About Us</a></li>
-          <li><a onclick="showPage('faq')">FAQs</a></li>
-          <li><a onclick="showPage('contact')">Contact</a></li>
-          <li><a onclick="showPage('book')">Book a Meeting</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#book">Book a Meeting</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Contact</div>
         <ul class="footer-links">
-          <li><a>01442 816 817</a></li>
-          <li><a>quantum-wills@gmail.com</a></li>
+          <li><a href="tel:+441442816817">01442 816 817</a></li>
+          <li><a href="mailto:quantum-wills@gmail.com">quantum-wills@gmail.com</a></li>
         </ul>
       </div>
     </div>
@@ -1819,34 +1887,34 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
-          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
-        </div>
+        <a class="nav-logo" href="#home" aria-label="Quantum Wills home">
+          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills &amp; Estate Planning" class="footer-logo-img" width="220" height="96" loading="lazy" decoding="async">
+        </a>
         <p>Professional will writing and estate planning services throughout the United Kingdom.</p>
       </div>
       <div>
         <div class="footer-col-title">Services</div>
         <ul class="footer-links">
-          <li><a onclick="showPage('services')">Will Writing</a></li>
-          <li><a onclick="showPage('services')">Estate Planning</a></li>
-          <li><a onclick="showPage('services')">LPA</a></li>
-          <li><a onclick="showPage('services')">Probate</a></li>
+          <li><a href="#services">Will Writing</a></li>
+          <li><a href="#services">Estate Planning</a></li>
+          <li><a href="#services">LPA</a></li>
+          <li><a href="#services">Probate</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
-          <li><a onclick="showPage('about')">About Us</a></li>
-          <li><a onclick="showPage('faq')">FAQs</a></li>
-          <li><a onclick="showPage('contact')">Contact</a></li>
-          <li><a onclick="showPage('book')">Book a Meeting</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#book">Book a Meeting</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Contact</div>
         <ul class="footer-links">
-          <li><a>01442 816 817</a></li>
-          <li><a>quantum-wills@gmail.com</a></li>
+          <li><a href="tel:+441442816817">01442 816 817</a></li>
+          <li><a href="mailto:quantum-wills@gmail.com">quantum-wills@gmail.com</a></li>
         </ul>
       </div>
     </div>
@@ -1984,33 +2052,33 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
-          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
-        </div>
+        <a class="nav-logo" href="#home" aria-label="Quantum Wills home">
+          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills &amp; Estate Planning" class="footer-logo-img" width="220" height="96" loading="lazy" decoding="async">
+        </a>
         <p>Professional will writing and estate planning services throughout the United Kingdom.</p>
       </div>
       <div>
         <div class="footer-col-title">Services</div>
         <ul class="footer-links">
-          <li><a onclick="showPage('services')">Will Writing</a></li>
-          <li><a onclick="showPage('services')">Estate Planning</a></li>
-          <li><a onclick="showPage('services')">LPA</a></li>
-          <li><a onclick="showPage('services')">Probate</a></li>
+          <li><a href="#services">Will Writing</a></li>
+          <li><a href="#services">Estate Planning</a></li>
+          <li><a href="#services">LPA</a></li>
+          <li><a href="#services">Probate</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
-          <li><a onclick="showPage('about')">About Us</a></li>
-          <li><a onclick="showPage('faq')">FAQs</a></li>
-          <li><a onclick="showPage('contact')">Contact</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Contact</div>
         <ul class="footer-links">
-          <li><a>01442 816 817</a></li>
-          <li><a>quantum-wills@gmail.com</a></li>
+          <li><a href="tel:+441442816817">01442 816 817</a></li>
+          <li><a href="mailto:quantum-wills@gmail.com">quantum-wills@gmail.com</a></li>
         </ul>
       </div>
     </div>
@@ -2019,6 +2087,8 @@
     </div>
   </footer>
 </div>
+
+</main>
 
 <!-- Form send-failure modal -->
 <div class="form-modal" id="form-error-modal" role="dialog" aria-modal="true" aria-labelledby="form-error-title" aria-hidden="true">
@@ -2036,21 +2106,109 @@
   </div>
 </div>
 
-<!-- EmailJS SDK + config (edit keys in emailjs/emailjs-config.js) -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="emailjs/emailjs-config.js"></script>
 <script>
+const PRODUCTION_URL = 'https://quantum-wills.co.uk';
+const SITE_URL = (window.location.protocol === 'file:' || !window.location.hostname)
+  ? PRODUCTION_URL
+  : window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+
+const PAGE_META = {
+  home: {
+    title: 'Quantum Wills & Estate Planning | Professional Will Writing UK',
+    description: 'Expert will writing and estate planning across the UK. Free consultation, fixed fees, and secure will storage. Serving families nationwide.'
+  },
+  about: {
+    title: 'About Us | Quantum Wills & Estate Planning',
+    description: 'Meet the team behind Quantum Wills. Compassionate, qualified estate planners helping UK families protect their legacy.'
+  },
+  services: {
+    title: 'Will Writing & Estate Planning Services | Quantum Wills UK',
+    description: 'Will writing, LPA, trusts, probate, and property protection. Comprehensive estate planning services with transparent fixed fees.'
+  },
+  faq: {
+    title: 'FAQs | Quantum Wills & Estate Planning',
+    description: 'Answers to common questions about wills, estate planning, LPAs, probate, and our process. Free initial consultation available.'
+  },
+  contact: {
+    title: 'Contact Us | Quantum Wills & Estate Planning',
+    description: 'Get in touch with Quantum Wills. Call 01442 816 817 or email quantum-wills@gmail.com. Home and video visits available nationwide.'
+  },
+  book: {
+    title: 'Book a Free Consultation | Quantum Wills & Estate Planning',
+    description: 'Book your free, no-obligation estate planning consultation. Phone or video meetings available, typically within 3–5 working days.'
+  }
+};
+
+function updatePageMeta(name) {
+  const meta = PAGE_META[name] || PAGE_META.home;
+  document.title = meta.title;
+
+  const desc = document.querySelector('meta[name="description"]');
+  if (desc) desc.setAttribute('content', meta.description);
+
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogTitle) ogTitle.setAttribute('content', meta.title);
+  if (ogDesc) ogDesc.setAttribute('content', meta.description);
+
+  const twTitle = document.querySelector('meta[name="twitter:title"]');
+  const twDesc = document.querySelector('meta[name="twitter:description"]');
+  if (twTitle) twTitle.setAttribute('content', meta.title);
+  if (twDesc) twDesc.setAttribute('content', meta.description);
+
+  const canonical = document.getElementById('canonical-link');
+  if (canonical) canonical.href = SITE_URL + (name === 'home' ? '/' : '/#' + name);
+
+  const pageEl = document.getElementById('page-' + name);
+  if (pageEl && !pageEl.dataset.seoTitle) pageEl.dataset.seoTitle = meta.title;
+}
+
+function initSeoBasics() {
+  const schema = document.querySelector('script[type="application/ld+json"]');
+  if (schema) {
+    try {
+      const data = JSON.parse(schema.textContent);
+      data.url = SITE_URL;
+      schema.textContent = JSON.stringify(data);
+    } catch (e) { /* ignore */ }
+  }
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) ogUrl.content = SITE_URL + (location.hash || '/');
+}
+
+let emailJsReady = null;
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector('script[src="' + src + '"]')) { resolve(); return; }
+    const s = document.createElement('script');
+    s.src = src;
+    s.async = true;
+    s.onload = resolve;
+    s.onerror = reject;
+    document.body.appendChild(s);
+  });
+}
+
+function ensureEmailJs() {
+  if (!emailJsReady) {
+    emailJsReady = (async () => {
+      await loadScript('https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js');
+      await loadScript('emailjs/emailjs-config.js');
+      emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
+    })();
+  }
+  return emailJsReady;
+}
+
 function isEmailJsConfigured() {
+  if (typeof EMAILJS_CONFIG === 'undefined') return false;
   const c = EMAILJS_CONFIG;
   return c.serviceId?.startsWith('service_')
     && c.publicKey?.length > 10
     && c.templates.booking?.startsWith('template_')
     && c.templates.contact?.startsWith('template_');
 }
-
-(function() {
-  if (typeof emailjs !== 'undefined') emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
-})();
 
 function showFormErrorModal() {
   const modal = document.getElementById('form-error-modal');
@@ -2080,6 +2238,16 @@ async function sendViaEmailJs(templateKey, params, { btn, note, successId, btnTe
   btn.disabled = true;
   btn.textContent = 'Sending…';
 
+  try {
+    await ensureEmailJs();
+  } catch (e) {
+    console.error('Failed to load EmailJS:', e);
+    btn.disabled = false;
+    btn.textContent = btnText;
+    showFormErrorModal();
+    return;
+  }
+
   if (!isEmailJsConfigured()) {
     console.error('EmailJS not configured:', params);
     btn.disabled = false;
@@ -2105,15 +2273,43 @@ async function sendViaEmailJs(templateKey, params, { btn, note, successId, btnTe
 }
 
 // ── PAGE ROUTING ──
-function showPage(name) {
+const VALID_PAGES = ['home', 'about', 'services', 'faq', 'contact', 'book'];
+
+function showPage(name, updateHash) {
+  if (updateHash === undefined) updateHash = true;
+  if (!VALID_PAGES.includes(name)) name = 'home';
+
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
-  document.querySelectorAll('.nav-links a').forEach(a => {
+  document.querySelectorAll('.nav-links a, .nav-logo').forEach(a => {
     a.classList.toggle('active', a.dataset.page === name);
   });
+
+  updatePageMeta(name);
+
+  const hash = name === 'home' ? '#home' : '#' + name;
+  if (updateHash && location.hash !== hash) {
+    history.pushState(null, '', hash);
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
   setTimeout(initFadeIns, 100);
 }
+
+function handleRoute() {
+  const name = (location.hash || '#home').slice(1);
+  showPage(VALID_PAGES.includes(name) ? name : 'home', false);
+}
+
+document.querySelectorAll('.nav-links a, .nav-logo').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    showPage(link.dataset.page || 'home');
+  });
+});
+
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('popstate', handleRoute);
 
 window.addEventListener('scroll', () => {
   document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
@@ -2289,6 +2485,8 @@ async function submitBooking() {
   });
 }
 
+initSeoBasics();
+handleRoute();
 setTimeout(initFadeIns, 200);
 </script>
 </body>
