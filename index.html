@@ -25,7 +25,11 @@
     --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(201, 164, 101, 0.45) var(--navy-mid);
+  }
 
   body {
     font-family: var(--sans);
@@ -35,6 +39,20 @@
     line-height: 1.7;
     overflow-x: hidden;
   }
+
+  /* ─── SCROLLBAR ─── */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(201, 164, 101, 0.4) var(--navy-light);
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--navy-mid); }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(201, 164, 101, 0.35);
+    border: 2px solid var(--navy-mid);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+  ::-webkit-scrollbar-corner { background: var(--navy-mid); }
 
   /* ─── NAV ─── */
   nav {
@@ -635,6 +653,31 @@
   .form-group { display: flex; flex-direction: column; gap: 8px; }
   .form-group.full { grid-column: 1 / -1; }
   .form-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+  .form-required { color: #e8a0a0; margin-left: 3px; font-weight: 500; }
+  .form-legend { font-size: 12px; font-weight: 300; color: var(--text-muted); margin-bottom: 24px; }
+  .form-legend .form-required { margin-left: 1px; }
+  .form-error {
+    display: none;
+    font-size: 12px;
+    font-weight: 400;
+    color: #e8a0a0;
+    line-height: 1.45;
+    margin-top: 2px;
+  }
+  .form-error.visible { display: block; }
+  .form-group.has-error .form-label { color: #e8a0a0; }
+  .form-input.is-invalid,
+  .form-select.is-invalid,
+  .form-textarea.is-invalid {
+    border-color: rgba(232, 120, 120, 0.65);
+    background: rgba(232, 120, 120, 0.05);
+  }
+  .form-input.is-invalid:focus,
+  .form-select.is-invalid:focus,
+  .form-textarea.is-invalid:focus {
+    border-color: #e87878;
+    background: rgba(232, 120, 120, 0.07);
+  }
   .form-input, .form-select, .form-textarea {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(201,164,101,0.15);
@@ -680,7 +723,6 @@
     display: grid; grid-template-columns: 1fr 1.6fr;
     gap: 80px; margin-top: 64px;
   }
-  .booking-info { }
   .booking-features { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; }
   .booking-feature {
     display: flex; gap: 16px; align-items: flex-start;
@@ -870,6 +912,70 @@
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── FORM ERROR MODAL ─── */
+  .form-modal {
+    position: fixed; inset: 0; z-index: 2000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .form-modal.visible { opacity: 1; visibility: visible; }
+  .form-modal-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(7, 21, 37, 0.82);
+    backdrop-filter: blur(6px);
+  }
+  .form-modal-panel {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 480px;
+    padding: 40px 36px 36px;
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,164,101,0.28);
+    text-align: center;
+    transform: translateY(12px);
+    transition: transform 0.3s ease;
+  }
+  .form-modal.visible .form-modal-panel { transform: translateY(0); }
+  .form-modal-close {
+    position: absolute; top: 14px; right: 16px;
+    background: none; border: none;
+    color: var(--text-muted); font-size: 28px; line-height: 1;
+    cursor: pointer; padding: 4px 8px;
+    transition: color 0.2s;
+  }
+  .form-modal-close:hover { color: var(--gold); }
+  .form-modal-label {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: #e8a0a0; margin-bottom: 12px;
+  }
+  .form-modal-title {
+    font-family: var(--serif); font-size: 28px; font-weight: 300;
+    color: var(--white); line-height: 1.25; margin-bottom: 16px;
+  }
+  .form-modal-text {
+    font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.65);
+    line-height: 1.75; margin-bottom: 28px;
+  }
+  .form-modal-contacts {
+    display: flex; flex-direction: column; gap: 12px;
+    margin-bottom: 28px;
+  }
+  .form-modal-link {
+    display: block;
+    padding: 14px 20px;
+    border: 1px solid rgba(201,164,101,0.25);
+    background: rgba(201,164,101,0.06);
+    color: var(--gold); text-decoration: none;
+    font-size: 14px; font-weight: 400;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .form-modal-link:hover {
+    background: rgba(201,164,101,0.12);
+    border-color: var(--gold);
+  }
+  .form-modal-btn { margin-top: 0; }
 </style>
 </head>
 <body>
@@ -877,7 +983,7 @@
 <!-- ─── NAVIGATION ─── -->
 <nav id="main-nav">
   <a class="nav-logo" onclick="showPage('home')">
-    <img src="Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="nav-logo-img">
+    <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="nav-logo-img">
   </a>
   <ul class="nav-links">
     <li><a onclick="showPage('home')" data-page="home">Home</a></li>
@@ -1154,7 +1260,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
-          <img src="Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
+          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
         </div>
         <p>Professional will writing and estate planning services throughout the United Kingdom. Protecting your legacy, securing your family's future.</p>
       </div>
@@ -1210,7 +1316,7 @@
     <div class="about-grid fade-in">
       <div class="about-img-wrap">
         <div class="about-img-frame" style="overflow:hidden; display:block; padding:0; border-radius:0;">
-          <img src="Vipul.png" alt="Vipul — Director and CEO" class="about-img-photo">
+          <img src="assets/Vipul.png" alt="Vipul — Director and CEO" class="about-img-photo">
           <div class="about-img-caption">Director &amp; CEO</div>
           <div class="about-badge">
             <div class="about-badge-num">7+</div>
@@ -1293,7 +1399,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
-          <img src="Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
+          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
         </div>
         <p>Professional will writing and estate planning services throughout the United Kingdom.</p>
       </div>
@@ -1457,7 +1563,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
-          <img src="Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
+          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
         </div>
         <p>Professional will writing and estate planning services throughout the United Kingdom.</p>
       </div>
@@ -1566,7 +1672,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
-          <img src="Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
+          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
         </div>
         <p>Professional will writing and estate planning services throughout the United Kingdom.</p>
       </div>
@@ -1660,24 +1766,28 @@
         <div class="section-label" style="margin-bottom:32px;">Send a Message</div>
         <div class="form-grid" id="contact-form">
           <div class="form-group">
-            <label class="form-label">First Name</label>
-            <input class="form-input" type="text" placeholder="Your first name">
+            <label class="form-label" for="ct-fname">First Name <span class="form-required" aria-hidden="true">*</span></label>
+            <input class="form-input" id="ct-fname" type="text" placeholder="Your first name" autocomplete="given-name" aria-describedby="ct-fname-error">
+            <span class="form-error" id="ct-fname-error" role="alert"></span>
           </div>
           <div class="form-group">
-            <label class="form-label">Last Name</label>
-            <input class="form-input" type="text" placeholder="Your last name">
+            <label class="form-label" for="ct-lname">Last Name <span class="form-required" aria-hidden="true">*</span></label>
+            <input class="form-input" id="ct-lname" type="text" placeholder="Your last name" autocomplete="family-name" aria-describedby="ct-lname-error">
+            <span class="form-error" id="ct-lname-error" role="alert"></span>
           </div>
           <div class="form-group">
-            <label class="form-label">Email Address</label>
-            <input class="form-input" type="email" placeholder="your@email.com">
+            <label class="form-label" for="ct-email">Email Address <span class="form-required" aria-hidden="true">*</span></label>
+            <input class="form-input" id="ct-email" type="email" placeholder="your@email.com" autocomplete="email" aria-describedby="ct-email-error">
+            <span class="form-error" id="ct-email-error" role="alert"></span>
           </div>
           <div class="form-group">
-            <label class="form-label">Phone Number</label>
-            <input class="form-input" type="tel" placeholder="Your phone number">
+            <label class="form-label" for="ct-phone">Phone Number</label>
+            <input class="form-input" id="ct-phone" type="tel" placeholder="Your phone number" autocomplete="tel" aria-describedby="ct-phone-error">
+            <span class="form-error" id="ct-phone-error" role="alert"></span>
           </div>
           <div class="form-group full">
-            <label class="form-label">How can we help?</label>
-            <select class="form-select">
+            <label class="form-label" for="ct-topic">How can we help?</label>
+            <select class="form-select" id="ct-topic" aria-describedby="ct-topic-error">
               <option value="">Please select a topic</option>
               <option>Will Writing</option>
               <option>Estate Planning</option>
@@ -1686,14 +1796,16 @@
               <option>Probate</option>
               <option>General Enquiry</option>
             </select>
+            <span class="form-error" id="ct-topic-error" role="alert"></span>
           </div>
           <div class="form-group full">
-            <label class="form-label">Your Message</label>
-            <textarea class="form-textarea" placeholder="Tell us a little about your situation..."></textarea>
+            <label class="form-label" for="ct-message">Your Message <span class="form-required" aria-hidden="true">*</span></label>
+            <textarea class="form-textarea" id="ct-message" placeholder="Tell us a little about your situation..." aria-describedby="ct-message-error"></textarea>
+            <span class="form-error" id="ct-message-error" role="alert"></span>
           </div>
           <div class="form-group full">
-            <button class="form-submit" onclick="submitForm('contact')">Send Message</button>
-            <p class="form-note">We respect your privacy. Your details are never shared with third parties.</p>
+            <button class="form-submit" id="ct-submit-btn" onclick="submitContact()">Send Message</button>
+            <p class="form-note" id="ct-form-note">We respect your privacy. Your details are never shared with third parties.</p>
             <div class="form-success" id="contact-success">
               <p>Thank you — message received.</p>
               <small>A member of our team will be in touch within 4 business hours.</small>
@@ -1708,7 +1820,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
-          <img src="Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
+          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
         </div>
         <p>Professional will writing and estate planning services throughout the United Kingdom.</p>
       </div>
@@ -1791,27 +1903,31 @@
       </div>
       <div>
         <div style="padding:48px; border:1px solid rgba(201,164,101,0.2); background:rgba(201,164,101,0.02);">
-          <div style="font-family:var(--serif); font-size:26px; font-weight:300; color:var(--white); margin-bottom:32px; line-height:1.2;">Book your <em style="color:var(--gold); font-style:italic;">free</em> consultation</div>
+          <div style="font-family:var(--serif); font-size:26px; font-weight:300; color:var(--white); margin-bottom:16px; line-height:1.2;">Book your <em style="color:var(--gold); font-style:italic;">free</em> consultation</div>
           <div class="form-grid" id="book-form">
             <div class="form-group">
-              <label class="form-label">First Name</label>
-              <input class="form-input" id="bk-fname" type="text" placeholder="First name">
+              <label class="form-label" for="bk-fname">First Name <span class="form-required" aria-hidden="true">*</span></label>
+              <input class="form-input" id="bk-fname" type="text" placeholder="First name" autocomplete="given-name" aria-describedby="bk-fname-error">
+              <span class="form-error" id="bk-fname-error" role="alert"></span>
             </div>
             <div class="form-group">
-              <label class="form-label">Last Name</label>
-              <input class="form-input" id="bk-lname" type="text" placeholder="Last name">
+              <label class="form-label" for="bk-lname">Last Name <span class="form-required" aria-hidden="true">*</span></label>
+              <input class="form-input" id="bk-lname" type="text" placeholder="Last name" autocomplete="family-name" aria-describedby="bk-lname-error">
+              <span class="form-error" id="bk-lname-error" role="alert"></span>
             </div>
             <div class="form-group">
-              <label class="form-label">Email Address</label>
-              <input class="form-input" id="bk-email" type="email" placeholder="your@email.com">
+              <label class="form-label" for="bk-email">Email Address <span class="form-required" aria-hidden="true">*</span></label>
+              <input class="form-input" id="bk-email" type="email" placeholder="your@email.com" autocomplete="email" aria-describedby="bk-email-error">
+              <span class="form-error" id="bk-email-error" role="alert"></span>
             </div>
             <div class="form-group">
-              <label class="form-label">Phone Number</label>
-              <input class="form-input" id="bk-phone" type="tel" placeholder="Phone number">
+              <label class="form-label" for="bk-phone">Phone Number</label>
+              <input class="form-input" id="bk-phone" type="tel" placeholder="Phone number" autocomplete="tel" aria-describedby="bk-phone-error">
+              <span class="form-error" id="bk-phone-error" role="alert"></span>
             </div>
             <div class="form-group full">
-              <label class="form-label">I'm interested in</label>
-              <select class="form-select" id="bk-service">
+              <label class="form-label" for="bk-service">I'm interested in <span class="form-required" aria-hidden="true">*</span></label>
+              <select class="form-select" id="bk-service" aria-describedby="bk-service-error">
                 <option value="">Select a service</option>
                 <option>Will Writing</option>
                 <option>Estate Planning</option>
@@ -1821,24 +1937,28 @@
                 <option>Property Protection</option>
                 <option>Not sure — I'd like guidance</option>
               </select>
+              <span class="form-error" id="bk-service-error" role="alert"></span>
             </div>
             <div class="form-group full">
-              <label class="form-label">Preferred Meeting Type</label>
-              <select class="form-select" id="bk-format">
+              <label class="form-label" for="bk-format">Preferred Meeting Type</label>
+              <select class="form-select" id="bk-format" aria-describedby="bk-format-error">
                 <option value="">Select a preference</option>
                 <option>Phone Call</option>
                 <option>Zoom Call</option>
                 <option>Google Meet</option>
                 <option>No preference</option>
               </select>
+              <span class="form-error" id="bk-format-error" role="alert"></span>
             </div>
             <div class="form-group full">
-              <label class="form-label">Preferred Date & Time</label>
-              <input class="form-input" id="bk-datetime" type="text" placeholder="e.g. Weekday afternoons, or specific date">
+              <label class="form-label" for="bk-datetime">Preferred Date &amp; Time <span class="form-required" aria-hidden="true">*</span></label>
+              <input class="form-input" id="bk-datetime" type="text" placeholder="e.g. Weekday afternoons, or specific date" aria-describedby="bk-datetime-error">
+              <span class="form-error" id="bk-datetime-error" role="alert"></span>
             </div>
             <div class="form-group full">
-              <label class="form-label">Anything else we should know?</label>
-              <textarea class="form-textarea" id="bk-notes" placeholder="Any additional context that would help us prepare..." style="min-height:90px;"></textarea>
+              <label class="form-label" for="bk-notes">Anything else we should know?</label>
+              <textarea class="form-textarea" id="bk-notes" placeholder="Any additional context that would help us prepare..." style="min-height:90px;" aria-describedby="bk-notes-error"></textarea>
+              <span class="form-error" id="bk-notes-error" role="alert"></span>
             </div>
             <div class="form-group full">
               <button class="form-submit" id="bk-submit-btn" onclick="submitBooking()">Request Consultation</button>
@@ -1865,7 +1985,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
-          <img src="Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
+          <img src="assets/Quantum Wills Logo.png" alt="Quantum Wills & Estate Planning" class="footer-logo-img">
         </div>
         <p>Professional will writing and estate planning services throughout the United Kingdom.</p>
       </div>
@@ -1900,29 +2020,89 @@
   </footer>
 </div>
 
-<!-- EmailJS SDK -->
+<!-- Form send-failure modal -->
+<div class="form-modal" id="form-error-modal" role="dialog" aria-modal="true" aria-labelledby="form-error-title" aria-hidden="true">
+  <div class="form-modal-backdrop" onclick="closeFormErrorModal()"></div>
+  <div class="form-modal-panel">
+    <button type="button" class="form-modal-close" onclick="closeFormErrorModal()" aria-label="Close">&times;</button>
+    <p class="form-modal-label">Unable to Send</p>
+    <h2 class="form-modal-title" id="form-error-title">Please contact us directly</h2>
+    <p class="form-modal-text">We couldn't deliver your message right now. Email or call us and a member of our team will be in touch within 4 business hours.</p>
+    <div class="form-modal-contacts">
+      <a class="form-modal-link" href="mailto:quantum-wills@gmail.com">quantum-wills@gmail.com</a>
+      <a class="form-modal-link" href="tel:01442816817">01442 816 817</a>
+    </div>
+    <button type="button" class="form-submit form-modal-btn" onclick="closeFormErrorModal()">Close</button>
+  </div>
+</div>
+
+<!-- EmailJS SDK + config (edit keys in emailjs/emailjs-config.js) -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="emailjs/emailjs-config.js"></script>
 <script>
-// ================================================================
-// EMAILJS SETUP — Required for Book a Meeting to send real emails
-// ================================================================
-// 1. Go to https://www.emailjs.com and create a free account
-// 2. Add Gmail as an Email Service (connect quantum-wills@gmail.com)
-//    → Copy the Service ID and paste below as YOUR_SERVICE_ID
-// 3. Create an Email Template using these template variables:
-//    {{client_name}}, {{client_email}}, {{client_phone}},
-//    {{service}}, {{meeting_format}}, {{preferred_datetime}}, {{notes}}
-//    Set "To Email" to: quantum-wills@gmail.com
-//    → Copy the Template ID and paste below as YOUR_TEMPLATE_ID
-// 4. Account → API Keys → Public Key → paste as YOUR_PUBLIC_KEY
-// ================================================================
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+function isEmailJsConfigured() {
+  const c = EMAILJS_CONFIG;
+  return c.serviceId?.startsWith('service_')
+    && c.publicKey?.length > 10
+    && c.templates.booking?.startsWith('template_')
+    && c.templates.contact?.startsWith('template_');
+}
 
 (function() {
-  if (typeof emailjs !== 'undefined') emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  if (typeof emailjs !== 'undefined') emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
 })();
+
+function showFormErrorModal() {
+  const modal = document.getElementById('form-error-modal');
+  modal.classList.add('visible');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFormErrorModal() {
+  const modal = document.getElementById('form-error-modal');
+  modal.classList.remove('visible');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeFormErrorModal();
+});
+
+function showFormSuccess(btn, note, successId) {
+  btn.style.display = 'none';
+  if (note) note.style.display = 'none';
+  document.getElementById(successId).classList.add('visible');
+}
+
+async function sendViaEmailJs(templateKey, params, { btn, note, successId, btnText }) {
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  if (!isEmailJsConfigured()) {
+    console.error('EmailJS not configured:', params);
+    btn.disabled = false;
+    btn.textContent = btnText;
+    showFormErrorModal();
+    return;
+  }
+
+  try {
+    await emailjs.send(
+      EMAILJS_CONFIG.serviceId,
+      EMAILJS_CONFIG.templates[templateKey],
+      params,
+      { publicKey: EMAILJS_CONFIG.publicKey }
+    );
+    showFormSuccess(btn, note, successId);
+  } catch (err) {
+    console.error('EmailJS error:', err);
+    btn.disabled = false;
+    btn.textContent = btnText;
+    showFormErrorModal();
+  }
+}
 
 // ── PAGE ROUTING ──
 function showPage(name) {
@@ -1954,14 +2134,135 @@ function toggleFaq(el) {
   if (!wasOpen) item.classList.add('open');
 }
 
-// ── CONTACT FORM (basic success display) ──
-function submitForm(type) {
-  const success = document.getElementById(type + '-success');
-  if (success) { success.classList.add('visible'); }
+// ── FORM VALIDATION ──
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const PHONE_RE = /^[\d\s\-+().]{7,20}$/;
+
+function setFieldError(fieldId, message) {
+  const input = document.getElementById(fieldId);
+  const group = input?.closest('.form-group');
+  const errorEl = document.getElementById(fieldId + '-error');
+  if (!input || !group || !errorEl) return;
+
+  if (message) {
+    group.classList.add('has-error');
+    input.classList.add('is-invalid');
+    input.setAttribute('aria-invalid', 'true');
+    errorEl.textContent = message;
+    errorEl.classList.add('visible');
+  } else {
+    group.classList.remove('has-error');
+    input.classList.remove('is-invalid');
+    input.removeAttribute('aria-invalid');
+    errorEl.textContent = '';
+    errorEl.classList.remove('visible');
+  }
+}
+
+function clearFormErrors(formEl) {
+  formEl.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(input => {
+    setFieldError(input.id, '');
+  });
+}
+
+function validateRequired(value, label) {
+  if (!value || !String(value).trim()) return label + ' is required.';
+  return '';
+}
+
+function validateEmail(value) {
+  const v = String(value).trim();
+  if (!v) return 'Email address is required.';
+  if (!EMAIL_RE.test(v)) return 'Please enter a valid email address.';
+  return '';
+}
+
+function validatePhone(value) {
+  const v = String(value).trim();
+  if (!v) return '';
+  if (!PHONE_RE.test(v)) return 'Please enter a valid phone number.';
+  return '';
+}
+
+function validateSelect(value, label) {
+  if (!value) return 'Please select ' + label.toLowerCase() + '.';
+  return '';
+}
+
+function applyValidationErrors(errors) {
+  let firstErrorId = null;
+  Object.entries(errors).forEach(([fieldId, message]) => {
+    setFieldError(fieldId, message);
+    if (message && !firstErrorId) firstErrorId = fieldId;
+  });
+  if (firstErrorId) {
+    const field = document.getElementById(firstErrorId);
+    field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    field.focus();
+    return false;
+  }
+  return true;
+}
+
+function validateContactForm() {
+  clearFormErrors(document.getElementById('contact-form'));
+  return applyValidationErrors({
+    'ct-fname':   validateRequired(document.getElementById('ct-fname').value, 'First name'),
+    'ct-lname':   validateRequired(document.getElementById('ct-lname').value, 'Last name'),
+    'ct-email':   validateEmail(document.getElementById('ct-email').value),
+    'ct-phone':   validatePhone(document.getElementById('ct-phone').value),
+    'ct-message': validateRequired(document.getElementById('ct-message').value, 'Your message')
+  });
+}
+
+function validateBookingForm() {
+  clearFormErrors(document.getElementById('book-form'));
+  return applyValidationErrors({
+    'bk-fname':    validateRequired(document.getElementById('bk-fname').value, 'First name'),
+    'bk-lname':    validateRequired(document.getElementById('bk-lname').value, 'Last name'),
+    'bk-email':    validateEmail(document.getElementById('bk-email').value),
+    'bk-phone':    validatePhone(document.getElementById('bk-phone').value),
+    'bk-service':  validateSelect(document.getElementById('bk-service').value, 'a service'),
+    'bk-datetime': validateRequired(document.getElementById('bk-datetime').value, 'Preferred date and time')
+  });
+}
+
+document.querySelectorAll('#contact-form input, #contact-form select, #contact-form textarea, #book-form input, #book-form select, #book-form textarea').forEach(el => {
+  const clear = () => setFieldError(el.id, '');
+  el.addEventListener('input', clear);
+  el.addEventListener('change', clear);
+});
+
+// ── CONTACT FORM (EmailJS) ──
+async function submitContact() {
+  if (!validateContactForm()) return;
+
+  const fname   = document.getElementById('ct-fname').value.trim();
+  const lname   = document.getElementById('ct-lname').value.trim();
+  const email   = document.getElementById('ct-email').value.trim();
+  const phone   = document.getElementById('ct-phone').value.trim();
+  const topic   = document.getElementById('ct-topic').value;
+  const message = document.getElementById('ct-message').value.trim();
+
+  await sendViaEmailJs('contact', {
+    client_name:  (fname + ' ' + lname).trim(),
+    client_email: email,
+    client_phone: phone || 'Not provided',
+    topic:        topic || 'General Enquiry',
+    message:      message,
+    to_email:     'quantum-wills@gmail.com'
+  }, {
+    btn:       document.getElementById('ct-submit-btn'),
+    note:      document.getElementById('ct-form-note'),
+    successId: 'contact-success',
+    btnText:   'Send Message'
+  });
 }
 
 // ── BOOK A MEETING (EmailJS) ──
 async function submitBooking() {
+  if (!validateBookingForm()) return;
+
   const fname    = document.getElementById('bk-fname').value.trim();
   const lname    = document.getElementById('bk-lname').value.trim();
   const email    = document.getElementById('bk-email').value.trim();
@@ -1971,17 +2272,7 @@ async function submitBooking() {
   const datetime = document.getElementById('bk-datetime').value.trim();
   const notes    = document.getElementById('bk-notes').value.trim();
 
-  if (!fname || !email) {
-    alert('Please fill in at least your first name and email address.');
-    return;
-  }
-
-  const btn  = document.getElementById('bk-submit-btn');
-  const note = document.getElementById('bk-form-note');
-  btn.disabled = true;
-  btn.textContent = 'Sending…';
-
-  const params = {
+  await sendViaEmailJs('booking', {
     client_name:        (fname + ' ' + lname).trim(),
     client_email:       email,
     client_phone:       phone || 'Not provided',
@@ -1990,32 +2281,12 @@ async function submitBooking() {
     preferred_datetime: datetime || 'Not specified',
     notes:              notes || 'None',
     to_email:           'quantum-wills@gmail.com'
-  };
-
-  // If EmailJS not yet configured, show success silently (demo mode)
-  const notConfigured = EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID'
-    || EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID'
-    || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY';
-
-  if (notConfigured) {
-    console.log('📧 Booking details (EmailJS not configured yet):', params);
-    btn.style.display = 'none';
-    if (note) note.style.display = 'none';
-    document.getElementById('book-success').classList.add('visible');
-    return;
-  }
-
-  try {
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
-    btn.style.display = 'none';
-    if (note) note.style.display = 'none';
-    document.getElementById('book-success').classList.add('visible');
-  } catch (err) {
-    console.error('EmailJS error:', err);
-    btn.disabled = false;
-    btn.textContent = 'Request Consultation';
-    alert('⚠️ Could not send your request. Please email us directly at quantum-wills@gmail.com or call 01442 816 817.');
-  }
+  }, {
+    btn:       document.getElementById('bk-submit-btn'),
+    note:      document.getElementById('bk-form-note'),
+    successId: 'book-success',
+    btnText:   'Request Consultation'
+  });
 }
 
 setTimeout(initFadeIns, 200);

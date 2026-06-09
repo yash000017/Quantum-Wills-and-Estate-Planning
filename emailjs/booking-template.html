@@ -1,0 +1,134 @@
+<!--
+  EMAILJS — Booking / Consultation Request Template
+  =================================================
+  Dashboard: Email Templates → Create New Template
+
+  Settings:
+    Template name:  Quantum Wills — Booking Request
+    Subject:        New Consultation Request — {{client_name}}
+    To Email:       quantum-wills@gmail.com
+    From name:      Quantum Wills Website
+    Reply To:       {{client_email}}
+
+  Paste everything below this comment into the "Content" editor (HTML mode).
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Consultation Request</title>
+</head>
+<body style="margin:0; padding:0; background-color:#0d1b2a; font-family:Georgia, 'Times New Roman', serif;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#0d1b2a; padding:40px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="max-width:600px; width:100%; background-color:#12243a; border:1px solid rgba(201,164,101,0.25);">
+
+          <!-- Header -->
+          <tr>
+            <td style="padding:32px 40px 24px; border-bottom:1px solid rgba(201,164,101,0.15);">
+              <p style="margin:0 0 8px; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#c9a465; font-family:Arial, sans-serif;">Quantum Wills &amp; Estate Planning</p>
+              <h1 style="margin:0; font-size:28px; font-weight:300; color:#ffffff; line-height:1.3;">New Consultation Request</h1>
+            </td>
+          </tr>
+
+          <!-- Intro -->
+          <tr>
+            <td style="padding:28px 40px 8px;">
+              <p style="margin:0; font-size:15px; font-weight:300; color:rgba(255,255,255,0.75); line-height:1.7; font-family:Arial, sans-serif;">
+                A visitor has requested a free consultation via the website booking form.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Client details -->
+          <tr>
+            <td style="padding:20px 40px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:rgba(201,164,101,0.06); border:1px solid rgba(201,164,101,0.15);">
+                <tr>
+                  <td style="padding:24px;">
+                    <p style="margin:0 0 16px; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#c9a465; font-family:Arial, sans-serif;">Client Details</p>
+
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="font-family:Arial, sans-serif; font-size:14px;">
+                      <tr>
+                        <td style="padding:8px 0; color:rgba(255,255,255,0.45); width:140px; vertical-align:top;">Name</td>
+                        <td style="padding:8px 0; color:#ffffff; font-weight:400;">{{client_name}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0; color:rgba(255,255,255,0.45); vertical-align:top;">Email</td>
+                        <td style="padding:8px 0;"><a href="mailto:{{client_email}}" style="color:#c9a465; text-decoration:none;">{{client_email}}</a></td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0; color:rgba(255,255,255,0.45); vertical-align:top;">Phone</td>
+                        <td style="padding:8px 0; color:#ffffff;">{{client_phone}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Booking details -->
+          <tr>
+            <td style="padding:0 40px 28px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:rgba(201,164,101,0.06); border:1px solid rgba(201,164,101,0.15);">
+                <tr>
+                  <td style="padding:24px;">
+                    <p style="margin:0 0 16px; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#c9a465; font-family:Arial, sans-serif;">Consultation Preferences</p>
+
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="font-family:Arial, sans-serif; font-size:14px;">
+                      <tr>
+                        <td style="padding:8px 0; color:rgba(255,255,255,0.45); width:140px; vertical-align:top;">Service</td>
+                        <td style="padding:8px 0; color:#ffffff;">{{service}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0; color:rgba(255,255,255,0.45); vertical-align:top;">Meeting Type</td>
+                        <td style="padding:8px 0; color:#ffffff;">{{meeting_format}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0; color:rgba(255,255,255,0.45); vertical-align:top;">Preferred Time</td>
+                        <td style="padding:8px 0; color:#ffffff;">{{preferred_datetime}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0; color:rgba(255,255,255,0.45); vertical-align:top;">Notes</td>
+                        <td style="padding:8px 0; color:rgba(255,255,255,0.85); line-height:1.6;">{{notes}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- CTA -->
+          <tr>
+            <td style="padding:0 40px 36px;">
+              <table role="presentation" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="background-color:#c9a465; border-radius:0;">
+                    <a href="mailto:{{client_email}}?subject=Re%3A%20Your%20Quantum%20Wills%20Consultation" style="display:inline-block; padding:14px 28px; font-family:Arial, sans-serif; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#0d1b2a; text-decoration:none; font-weight:600;">Reply to Client</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:20px 40px; border-top:1px solid rgba(201,164,101,0.15);">
+              <p style="margin:0; font-size:12px; color:rgba(255,255,255,0.35); font-family:Arial, sans-serif; line-height:1.6;">
+                Sent from the Quantum Wills website booking form.<br>
+                quantum-wills@gmail.com · 01442 816 817
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
